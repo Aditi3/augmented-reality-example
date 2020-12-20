@@ -6,5 +6,6 @@ target 'HelloFurniture' do
   use_frameworks!
 
   # Pods for HelloFurniture
+  pod 'MBProgressHUD'
 
 end
