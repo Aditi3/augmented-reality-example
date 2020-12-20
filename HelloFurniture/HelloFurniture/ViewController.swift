@@ -14,8 +14,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    private var hud: MBProgressHUD!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.hud = MBProgressHUD.showAdded(to: self.sceneView, animated: true)
+        self.hud.label.text = "Detecting Plane..."
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -28,6 +33,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+     
+        if anchor is ARPlaneAnchor {
+            
+            DispatchQueue.main.async {
+                self.hud.label.text = "Plane Detected"
+                self.hud.hide(animated: true, afterDelay: 1.0)
+            }
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
