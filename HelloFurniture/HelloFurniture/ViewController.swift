@@ -45,7 +45,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 self.hud.label.text = "Plane Detected"
                 self.hud.hide(animated: true, afterDelay: 1.0)
             }
-            
         }
     }
     
@@ -68,6 +67,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = .horizontal
         
         // Run the view's session
         sceneView.session.run(configuration)
