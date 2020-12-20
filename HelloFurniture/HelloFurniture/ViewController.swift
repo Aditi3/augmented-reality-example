@@ -8,6 +8,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import MBProgressHUD
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 

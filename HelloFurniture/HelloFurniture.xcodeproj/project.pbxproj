@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		49420016258F0E1700CB3075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49420014258F0E1700CB3075 /* Main.storyboard */; };
 		49420018258F0E1900CB3075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49420017258F0E1900CB3075 /* Assets.xcassets */; };
 		4942001B258F0E1900CB3075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49420019258F0E1900CB3075 /* LaunchScreen.storyboard */; };
+		4942003B258F131F00CB3075 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 4942003A258F131F00CB3075 /* MBProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4942003B258F131F00CB3075 /* MBProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = HelloFurniture;
+			packageProductDependencies = (
+				4942003A258F131F00CB3075 /* MBProgressHUD */,
+			);
 			productName = HelloFurniture;
 			productReference = 4942000B258F0E1700CB3075 /* HelloFurniture.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +115,9 @@
 				Base,
 			);
 			mainGroup = 49420002258F0E1700CB3075;
+			packageReferences = (
+				49420039258F131F00CB3075 /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+			);
 			productRefGroup = 4942000C258F0E1700CB3075 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49420039258F131F00CB3075 /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4942003A258F131F00CB3075 /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49420039258F131F00CB3075 /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 49420003258F0E1700CB3075 /* Project object */;
 }
