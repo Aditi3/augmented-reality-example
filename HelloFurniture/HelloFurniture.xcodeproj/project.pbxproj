@@ -13,7 +13,6 @@
 		49420016258F0E1700CB3075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49420014258F0E1700CB3075 /* Main.storyboard */; };
 		49420018258F0E1900CB3075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49420017258F0E1900CB3075 /* Assets.xcassets */; };
 		4942001B258F0E1900CB3075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49420019258F0E1900CB3075 /* LaunchScreen.storyboard */; };
-		BB88A5D6A8CA1ACA411D3606 /* Pods_HelloFurniture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7921D311232503ACC0E9484A /* Pods_HelloFurniture.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +24,6 @@
 		49420017258F0E1900CB3075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4942001A258F0E1900CB3075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4942001C258F0E1900CB3075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FA6F64EBF9DA717C5D816AD /* Pods-HelloFurniture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloFurniture.release.xcconfig"; path = "Target Support Files/Pods-HelloFurniture/Pods-HelloFurniture.release.xcconfig"; sourceTree = "<group>"; };
-		7921D311232503ACC0E9484A /* Pods_HelloFurniture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloFurniture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87D219B80FA00A7AFD85DFEC /* Pods-HelloFurniture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloFurniture.debug.xcconfig"; path = "Target Support Files/Pods-HelloFurniture/Pods-HelloFurniture.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,28 +31,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB88A5D6A8CA1ACA411D3606 /* Pods_HelloFurniture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E658CB9730E8F9977F5C2FF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7921D311232503ACC0E9484A /* Pods_HelloFurniture.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		49420002258F0E1700CB3075 = {
 			isa = PBXGroup;
 			children = (
 				4942000D258F0E1700CB3075 /* HelloFurniture */,
 				4942000C258F0E1700CB3075 /* Products */,
-				91A4F360B5FA4EA42C31E6D1 /* Pods */,
-				2E658CB9730E8F9977F5C2FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,16 +67,6 @@
 			path = HelloFurniture;
 			sourceTree = "<group>";
 		};
-		91A4F360B5FA4EA42C31E6D1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				87D219B80FA00A7AFD85DFEC /* Pods-HelloFurniture.debug.xcconfig */,
-				5FA6F64EBF9DA717C5D816AD /* Pods-HelloFurniture.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,11 +74,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4942001F258F0E1900CB3075 /* Build configuration list for PBXNativeTarget "HelloFurniture" */;
 			buildPhases = (
-				134E7C7FC356F8D1E8CAB246 /* [CP] Check Pods Manifest.lock */,
 				49420007258F0E1700CB3075 /* Sources */,
 				49420008258F0E1700CB3075 /* Frameworks */,
 				49420009258F0E1700CB3075 /* Resources */,
-				7915FC91097E5EC04D3285E1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,48 +132,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		134E7C7FC356F8D1E8CAB246 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HelloFurniture-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7915FC91097E5EC04D3285E1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HelloFurniture/Pods-HelloFurniture-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HelloFurniture/Pods-HelloFurniture-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloFurniture/Pods-HelloFurniture-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49420007258F0E1700CB3075 /* Sources */ = {
@@ -352,7 +283,6 @@
 		};
 		49420020258F0E1900CB3075 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87D219B80FA00A7AFD85DFEC /* Pods-HelloFurniture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -371,7 +301,6 @@
 		};
 		49420021258F0E1900CB3075 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FA6F64EBF9DA717C5D816AD /* Pods-HelloFurniture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
