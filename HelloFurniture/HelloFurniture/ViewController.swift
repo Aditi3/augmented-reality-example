@@ -11,7 +11,7 @@ import ARKit
 import MBProgressHUD
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     private var hud: MBProgressHUD!
@@ -33,10 +33,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        registerGestureRecognizers()
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-     
+        
         if anchor is ARPlaneAnchor {
             
             DispatchQueue.main.async {
@@ -47,12 +49,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    private func registerGestureRecognizers(){
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func tapped(recognizer: UITapGestureRecognizer) {
+        guard let sceneView = recognizer.view as? ARSCNView else {
+            return
+        }
+        
+        let touch = recognizer.location(in: sceneView)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
