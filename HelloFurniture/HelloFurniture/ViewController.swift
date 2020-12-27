@@ -18,9 +18,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+        
         self.sceneView.autoenablesDefaultLighting = true
-
+        
         self.hud = MBProgressHUD.showAdded(to: self.sceneView, animated: true)
         self.hud.label.text = "Detecting Plane..."
         
@@ -52,11 +52,43 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private func registerGestureRecognizers(){
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(objTapped))
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(objPinched))
+        
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+        self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
+        
     }
     
-    @objc func tapped(recognizer: UITapGestureRecognizer) {
+    @objc func objPinched(recognizer: UIPinchGestureRecognizer) {
+        
+        if recognizer.state == .changed {
+            
+            guard let sceneView = recognizer.view as? ARSCNView else {
+                return
+            }
+            
+            let touch = recognizer.location(in: sceneView)
+            
+            let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+            
+            if let hitTest = hitTestResults.first {
+                
+                let chairNode = hitTest.node
+                
+                let pinchScaleX = Float(recognizer.scale) * chairNode.scale.x
+                let pinchScaleY = Float(recognizer.scale) * chairNode.scale.y
+                let pinchScaleZ = Float(recognizer.scale) * chairNode.scale.z
+                
+                chairNode.scale = SCNVector3(pinchScaleX,pinchScaleY,pinchScaleZ)
+                
+                recognizer.scale = 1
+                
+            }
+        }
+    }
+    
+    @objc func objTapped(recognizer: UITapGestureRecognizer) {
         guard let sceneView = recognizer.view as? ARSCNView else {
             return
         }
