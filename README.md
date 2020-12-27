@@ -1,4 +1,4 @@
-# 🚀 AR Kit Example
+#🚀 ARKit Example
 
 ## Introduction
 An application demonstrating usage of [ARKit framework](https://developer.apple.com/documentation/arkit).
