@@ -16,8 +16,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private var hud: MBProgressHUD!
     
-    private var newAngleY :Float = 0.0
-    private var currentAngleY :Float = 0.0
+    private var newAngleY: Float = 0.0
+    private var currentAngleY: Float = 0.0
+    private var localTranslatePosition: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,18 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         registerGestureRecognizers()
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        
-        if anchor is ARPlaneAnchor {
-            
-            DispatchQueue.main.async {
-                self.hud.label.text = "Plane Detected"
-                self.hud.hide(animated: true, afterDelay: 1.0)
-            }
-        }
-    }
-    
-    private func registerGestureRecognizers(){
+    private func registerGestureRecognizers() {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(objTapped))
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
@@ -63,6 +53,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(objPanned))
         self.sceneView.addGestureRecognizer(panGestureRecognizer)
+        
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector
+                                                                        (longPressed))
+        self.sceneView.addGestureRecognizer(longPressGestureRecognizer)
+        
+    }
+    
+    @objc func longPressed(recognizer :UILongPressGestureRecognizer) {
+        
+        guard let sceneView = recognizer.view as? ARSCNView else {
+            return
+        }
+        
+        let touch = recognizer.location(in: sceneView)
+        
+        let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+        
+        if let hitTest = hitTestResults.first {
+            
+            if let parentNode = hitTest.node.parent {
+                
+                if recognizer.state == .began {
+                    localTranslatePosition = touch
+                } else if recognizer.state == .changed {
+                    
+                    let deltaX = Float(touch.x - self.localTranslatePosition.x)/700
+                    let deltaY = Float(touch.y - self.localTranslatePosition.y)/700
+                    
+                    parentNode.localTranslate(by: SCNVector3(deltaX,0.0,deltaY))
+                    self.localTranslatePosition = touch
+                    
+                }
+            }
+        }
     }
     
     @objc func objPanned(recognizer :UIPanGestureRecognizer) {
@@ -75,24 +99,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             let touch = recognizer.location(in: sceneView)
             let translation = recognizer.translation(in: sceneView)
+            
             let hitTestResults = self.sceneView.hitTest(touch, options: nil)
             
             if let hitTest = hitTestResults.first {
                 
-                let chairNode = hitTest.node
-                self.newAngleY = Float(translation.x) * (Float) (Double.pi)/180
-                self.newAngleY += self.currentAngleY
-                
-                chairNode.eulerAngles.y = self.newAngleY
+                if let parentNode = hitTest.node.parent {
+                    
+                    self.newAngleY = Float(translation.x) * (Float) (Double.pi)/180
+                    self.newAngleY += self.currentAngleY
+                    parentNode.eulerAngles.y = self.newAngleY
+                    
+                }
             }
-            
         }
         else if recognizer.state == .ended {
             self.currentAngleY = self.newAngleY
         }
     }
     
-    @objc func objPinched(recognizer: UIPinchGestureRecognizer) {
+    @objc func objPinched(recognizer :UIPinchGestureRecognizer) {
         
         if recognizer.state == .changed {
             
@@ -115,12 +141,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 chairNode.scale = SCNVector3(pinchScaleX,pinchScaleY,pinchScaleZ)
                 
                 recognizer.scale = 1
-                
             }
         }
     }
     
-    @objc func objTapped(recognizer: UITapGestureRecognizer) {
+    @objc func objTapped(recognizer :UITapGestureRecognizer) {
+        
         guard let sceneView = recognizer.view as? ARSCNView else {
             return
         }
@@ -128,14 +154,29 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let touch = recognizer.location(in: sceneView)
         
         let hitTestResults = sceneView.hitTest(touch, types: .existingPlane)
+        
         if let hitTest = hitTestResults.first {
+            
             let chairScene = SCNScene(named: "chair.dae")!
-            guard let chairNode = chairScene.rootNode.childNode(withName: "chair", recursively: true) else {
+            guard let chairNode = chairScene.rootNode.childNode(withName: "parentNode", recursively: true) else {
                 return
             }
             
             chairNode.position = SCNVector3(hitTest.worldTransform.columns.3.x,hitTest.worldTransform.columns.3.y,hitTest.worldTransform.columns.3.z)
+            
             self.sceneView.scene.rootNode.addChildNode(chairNode)
+        }
+    }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        if anchor is ARPlaneAnchor {
+            
+            DispatchQueue.main.async {
+                
+                self.hud.label.text = "Plane Detected"
+                self.hud.hide(animated: true, afterDelay: 1.0)
+            }
         }
     }
     
@@ -156,4 +197,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
 }

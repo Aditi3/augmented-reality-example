@@ -14,9 +14,9 @@
 		49420018258F0E1900CB3075 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49420017258F0E1900CB3075 /* Assets.xcassets */; };
 		4942001B258F0E1900CB3075 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49420019258F0E1900CB3075 /* LaunchScreen.storyboard */; };
 		4942003B258F131F00CB3075 /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 4942003A258F131F00CB3075 /* MBProgressHUD */; };
-		49420042258F35BC00CB3075 /* chair.dae in Resources */ = {isa = PBXBuildFile; fileRef = 4942003F258F35BC00CB3075 /* chair.dae */; };
 		49420043258F35BC00CB3075 /* NeilFabricPlain008.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49420040258F35BC00CB3075 /* NeilFabricPlain008.jpg */; };
 		49420044258F35BC00CB3075 /* Neil Woo03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49420041258F35BC00CB3075 /* Neil Woo03.jpg */; };
+		4995BBEE259878A90046E4E5 /* chair.dae in Resources */ = {isa = PBXBuildFile; fileRef = 4995BBED259878A90046E4E5 /* chair.dae */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +28,9 @@
 		49420017258F0E1900CB3075 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4942001A258F0E1900CB3075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4942001C258F0E1900CB3075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4942003F258F35BC00CB3075 /* chair.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = chair.dae; sourceTree = "<group>"; };
 		49420040258F35BC00CB3075 /* NeilFabricPlain008.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NeilFabricPlain008.jpg; sourceTree = "<group>"; };
 		49420041258F35BC00CB3075 /* Neil Woo03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Neil Woo03.jpg"; sourceTree = "<group>"; };
+		4995BBED259878A90046E4E5 /* chair.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = chair.dae; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +64,12 @@
 		4942000D258F0E1700CB3075 /* HelloFurniture */ = {
 			isa = PBXGroup;
 			children = (
+				4995BBED259878A90046E4E5 /* chair.dae */,
 				4942000E258F0E1700CB3075 /* AppDelegate.swift */,
 				49420010258F0E1700CB3075 /* art.scnassets */,
 				49420012258F0E1700CB3075 /* ViewController.swift */,
 				49420014258F0E1700CB3075 /* Main.storyboard */,
 				49420017258F0E1900CB3075 /* Assets.xcassets */,
-				4942003F258F35BC00CB3075 /* chair.dae */,
 				49420041258F35BC00CB3075 /* Neil Woo03.jpg */,
 				49420040258F35BC00CB3075 /* NeilFabricPlain008.jpg */,
 				49420019258F0E1900CB3075 /* LaunchScreen.storyboard */,
@@ -142,9 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				49420043258F35BC00CB3075 /* NeilFabricPlain008.jpg in Resources */,
-				49420042258F35BC00CB3075 /* chair.dae in Resources */,
 				49420044258F35BC00CB3075 /* Neil Woo03.jpg in Resources */,
 				49420011258F0E1700CB3075 /* art.scnassets in Resources */,
+				4995BBEE259878A90046E4E5 /* chair.dae in Resources */,
 				4942001B258F0E1900CB3075 /* LaunchScreen.storyboard in Resources */,
 				49420018258F0E1900CB3075 /* Assets.xcassets in Resources */,
 				49420016258F0E1700CB3075 /* Main.storyboard in Resources */,
