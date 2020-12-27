@@ -18,7 +18,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
+        self.sceneView.autoenablesDefaultLighting = true
+
         self.hud = MBProgressHUD.showAdded(to: self.sceneView, animated: true)
         self.hud.label.text = "Detecting Plane..."
         
