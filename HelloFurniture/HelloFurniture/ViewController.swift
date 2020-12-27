@@ -16,6 +16,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     private var hud: MBProgressHUD!
     
+    private var newAngleY :Float = 0.0
+    private var currentAngleY :Float = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,11 +56,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private func registerGestureRecognizers(){
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(objTapped))
-        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(objPinched))
-        
         self.sceneView.addGestureRecognizer(tapGestureRecognizer)
+        
+        let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(objPinched))
         self.sceneView.addGestureRecognizer(pinchGestureRecognizer)
         
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(objPanned))
+        self.sceneView.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    @objc func objPanned(recognizer :UIPanGestureRecognizer) {
+        
+        if recognizer.state == .changed {
+            
+            guard let sceneView = recognizer.view as? ARSCNView else {
+                return
+            }
+            
+            let touch = recognizer.location(in: sceneView)
+            let translation = recognizer.translation(in: sceneView)
+            let hitTestResults = self.sceneView.hitTest(touch, options: nil)
+            
+            if let hitTest = hitTestResults.first {
+                
+                let chairNode = hitTest.node
+                self.newAngleY = Float(translation.x) * (Float) (Double.pi)/180
+                self.newAngleY += self.currentAngleY
+                
+                chairNode.eulerAngles.y = self.newAngleY
+            }
+            
+        }
+        else if recognizer.state == .ended {
+            self.currentAngleY = self.newAngleY
+        }
     }
     
     @objc func objPinched(recognizer: UIPinchGestureRecognizer) {
