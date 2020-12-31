@@ -1,4 +1,5 @@
 # 🚀 ARKit Example
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
 ## Introduction
 An application demonstrating usage of [ARKit framework](https://developer.apple.com/documentation/arkit).
